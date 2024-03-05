@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/openjdk/jdk:11-ubuntu
 
 # Install Scala and sbt
 # be sure to check java and scala version compatibilities
-ARG SCALA_VERSION=2.13.5
+ARG SCALA_VERSION=2.12.2
 ARG SBT_VERSION=1.4.9
 
 RUN apt-get update
@@ -15,6 +15,7 @@ RUN apt install gpg-agent
 RUN curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2EE0EA64E40A89B84B2DF73499E82A75642AC823" | gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/scalasbt-release.gpg --import
 RUN chmod 644 /etc/apt/trusted.gpg.d/scalasbt-release.gpg
 RUN apt-get update
+# -y means answer yes to install questions
 RUN apt-get install sbt -y
 
 
